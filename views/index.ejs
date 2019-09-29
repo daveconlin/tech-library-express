@@ -1,0 +1,28 @@
+<% include partials/header.ejs %>
+    <div class="table-wrapper">
+        <% if (books.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Author</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Copies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% books.forEach((book, index) => { %>
+                        <tr>
+                            <td><%= book.author %></td>
+                            <td><a href="/book?id=<%= book.id %>"><%= book.title %></a></td>
+                            <td><%= book.copies %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No books found. Go <a href="/add" >here</a> to add books.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
