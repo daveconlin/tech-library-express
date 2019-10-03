@@ -1,64 +1,69 @@
 <% include partials/header.ejs %>
-    <div class="table-wrapper">
-        <% if (books.length > 0) {%>
-            <table class="table table-hovered table-sm table-responsive-sm table-responsive-md">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Author</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Genre</th>
-                        <th scope="col">Checked Out</th>
-                        <th scope="col">Copies</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <form class="" action="index.html" method="post">
+<div class="container-fluid">
+  <div class="table-wrapper">
+      <% if (books.length > 0) {%>
+          <table class="table table-hovered table-sm table-responsive-sm table-responsive-md">
+              <thead class="thead-light">
+                  <tr>
+                      <th scope="col">Author</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Genre</th>
+                      <th scope="col">Checked Out</th>
+                      <th scope="col">Copies</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <form class="" action="index.html" method="post">
 
-                    <% books.forEach((book, index) => { %>
-                      <% if (book.copies>0){
-                      }else{
-                      }%>
+                  <% books.forEach((book, index) => { %>
+                    <% if (book.copies>0){
+                    }else{
+                    }%>
 
-                      <% if(book.checkedout){
-                        out = "true"
-                        row = ""
-                        enabled = 'btn-secondary disabled'
-                        enabledCheckin = "btn-primary"
-                        date = moment(book.checkedout, "YYYYMMDD").fromNow();
-                      }else{
-                        out = "false"
-                        row=""
-                        enabledCheckin = 'btn-secondary disabled'
-                        enabled = "btn-primary"
-                        date = ''
-                      }%>
+                    <% if(book.checkedout){
+                      out = "true"
+                      row = ""
+                      enabled = 'btn-secondary disabled'
+                      enabledCheckin = "btn-primary"
+                      date = moment(book.checkedout, "YYYYMMDD").fromNow();
+                    }else{
+                      out = "false"
+                      row=""
+                      enabledCheckin = 'btn-secondary disabled'
+                      enabled = "btn-primary"
+                      date = ''
+                    }%>
 
-                      <% var person = (book.firstname)? book.firstname +" "+ book.lastname: '' ; %>
-                      <% var bookId = book.id %>
-                        <tr class="<%=row%>">
-                            <td><%= book.author %></td>
-                            <td><a href="/book?id=<%=bookId%>"><%= book.title %></a></td>
-                            <td><%= book.genre %></td>
-                            <td><%=person%> <em class="small text-secondary"><%=date%></em> </td>
-                            <td><%= book.copies %></td>
-                            <td>
-                              <div class="btn-group" role="group" aria-label="Basic example">
-                                <% if(out=="true"){ %>
-                                  <a href="/checkin?id=<%=bookId%>" class="btn btn-secondary" style="width:125px;">check in <- </a>
-                                <% }else{ %>
-                                  <a href="/checkout?id=<%=bookId%>" class="btn btn-primary"  style="width:125px;">check out -> </a>
-                                <% } %>
-                              </div>
-                            </td>
-                        </tr>
-                    <% }) %>
-                  </tbody>
-            </table>
-        <% } else { %>
-            <p class="text-center">No books found. Go <a href="/add" >here</a> to add books.</p>
-        <% } %>
-    </div>
+                    <% var person = (book.firstname)? book.firstname +" "+ book.lastname: '' ; %>
+                    <% var bookId = book.id %>
+                      <tr class="<%=row%>">
+                          <td><%= book.author %></td>
+                          <td><a href="/book?id=<%=bookId%>"><%= book.title %></a></td>
+                          <td><%= book.genre %></td>
+                          <td><%=person%> <em class="small text-secondary"><%=date%></em> </td>
+                          <td><%= book.copies %></td>
+                          <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                              <% if(out=="true"){ %>
+                                <a href="/checkin?id=<%=bookId%>" class="btn btn-secondary" style="width:125px;">check in <span class="oi oi-icon-name" title="icon name" aria-hidden="true"></span>
+                                </a>
+                              <% }else{ %>
+                                <a href="/checkout?id=<%=bookId%>" class="btn btn-primary"  style="width:125px;">check out -> </a>
+                              <% } %>
+                            </div>
+                          </td>
+                      </tr>
+                  <% }) %>
+                </tbody>
+          </table>
+      <% } else { %>
+          <p class="text-center">No books found. Go <a href="/add" >here</a> to add books.</p>
+      <% } %>
+  </div>
+
 </div>
-</body>
-</html>
+</div>
+
+
+<% include partials/footer.ejs %>
