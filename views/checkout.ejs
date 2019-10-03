@@ -1,0 +1,21 @@
+<% include partials/header.ejs %>
+
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="studentCheckout">Choose a student</label>
+      <select class="form-control form-control-lg" id="studentCheckout">
+        <% users.forEach((user, index) => {%>
+          <%= user.firstname%>
+          <option><%= user.firstname%> <%= user.lastname%></option>
+          <% }) %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+
+</body>
+</html>
