@@ -20,6 +20,7 @@ var connection = mysql.createConnection({
 connection.connect();
 
 global.connection = connection;
+app.use(express.static(__dirname + '/public'));
 app.get('/', getHomePage);
 app.get('/checkout', getCheckout);
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
